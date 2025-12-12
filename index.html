@@ -98,7 +98,7 @@
 
       <label for="message">Message:</label>
       <textarea name="message" id="message" rows="5" required placeholder="message"></textarea>
-             <input type="hidden" name="_next" value="success.html">
+            
     <button type="submit">Send</button>
     </form>
   </section>
@@ -107,9 +107,15 @@
   <footer>
     &copy; 2025 Manisha Mhatre. All rights reserved.
   </footer>
-
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function() {
+        // Show alert message *before* redirecting to FormSubmit page
+        alert("✅ Message Sent Successfully! Thank you, Manisha.");
+    });
+  </script>
 </body>
 </html>
+
 
 
 

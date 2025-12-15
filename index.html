@@ -99,11 +99,11 @@
       <label for="message">Message:</label>
       <textarea name="message" id="message" rows="5" required placeholder="message"></textarea>      
      
-     <input type="hidden" name="_confirmation" value="Your message has been sent successfully.">
+     
       
       <input type="hidden" name="_captcha" value="false">
       
-      <button type="submit">Send</button>
+      <button type="submit" button ID="btnsubmit">Send</button>
     </form>
   </section>
 
@@ -111,9 +111,42 @@
   <footer>
     &copy; 2025 Manisha Mhatre. All rights reserved.
   </footer>
+ <script>
+    document.getElementById("contact").addEventListener("submit", function(event) {
+      event.preventDefault(); // Stop the default form submission (stops the FormSubmit page/link from appearing)
 
+      const form = event.target;
+      const formData = new FormData(form);
+      const submitButton = document.getElementById("btnsubmit");
+
+      btnsubmit.disabled = true; // Disable button to prevent double clicks
+
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Success! Redirect the user to your main page using JavaScript
+            document.getElementById("contactForm").reset();
+        } else {
+          // Handle errors if the submission failed
+          alert("Oops! There was a problem submitting your form.");
+          submitButton.disabled = false;
+        }
+      })
+      .catch(error => {
+        alert("An error occurred: " + error.message);
+        submitButton.disabled = false;
+      });
+    });
+  </script>
 </body>
 </html>
+
 
 
 

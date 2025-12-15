@@ -130,22 +130,24 @@
       })
       .then(response => {
         if (response.ok) {
-          // Success! Redirect the user to your main page using JavaScript
-            document.getElementById("contactForm").reset();
+          alert("Message sent successfully to Manisha.mhatre.!");
+          form.reset(); // Resets all form fields
+          submitButton.disabled = false; // Re-enable the button
         } else {
           // Handle errors if the submission failed
           alert("Oops! There was a problem submitting your form.");
-          submitButton.disabled = false;
+          btnsubmit.disabled = false;
         }
       })
       .catch(error => {
         alert("An error occurred: " + error.message);
-        submitButton.disabled = false;
+        btnsubmit.disabled = false;
       });
     });
   </script>
 </body>
 </html>
+
 
 
 

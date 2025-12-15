@@ -39,14 +39,42 @@
       nav ul { gap:20px; flex-wrap:wrap; }
     }
 
+        /* Styles for the custom modal popup (Revised for centering) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place relative to the browser window */
+      z-index: 1001; /* Sit on top of everything else */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      background-color: rgba(0,0,0,0.6); /* Slightly darker background with opacity */
+      /* Use flexbox to center the content perfectly in the middle of the screen */
+      display: flex; 
+      justify-content: center;
+      align-items: center;
+    }
+    /* When modal is shown via JS, we change display from none to flex */
+    .modal.is-visible {
+        display: flex;
+    }
+
     .modal-content {
       background-color: #fefefe;
-      margin: auto;
+      margin: auto; /* Removed margin auto, flexbox handles centering */
       padding: 40px;
       border-radius: 10px;
       max-width: 400px;
       text-align: center;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      /* Add animation for a professional touch */
+      animation: animatetop 0.4s;
+    }
+
+    /* Add a simple animation */
+    @keyframes animatetop {
+      from {top: -300px; opacity: 0}
+      to {top: 0; opacity: 1}
     }
 
     .close {
@@ -55,6 +83,9 @@
       font-size: 28px;
       font-weight: bold;
       cursor: pointer;
+      position: absolute; /* Position close button relative to content */
+      top: 10px;
+      right: 20px;
     }
 
     .close:hover,
@@ -62,6 +93,7 @@
       color: #333;
       text-decoration: none;
     }
+
   </style>
 </head>
 <body>
@@ -77,7 +109,7 @@
   <!-- Header / Logo -->
   <header>
     <!-- Full URL added to Image Source -->
-    <img src="i.ibb.co" alt="Manisha Mhatre Logo">
+       <img src="manisha-logo.png" class="logo" alt="Manisha Mhatre Logo">
     <h1>Manisha Mhatre</h1>
     <p>Freelance SQL, .NET & Data Analysis Professional</p>
   </header>
@@ -143,63 +175,65 @@
     <p>Thank you, your message has been received.</p>
   </div>
 </div>
- <script>
+ <<script>
     // Get the modal element
     var modal = document.getElementById("successModal");
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
 
     document.getElementById("contact").addEventListener("submit", function(event) {
-      event.preventDefault(); // This stops the browser from leaving the page
+      event.preventDefault(); 
 
       const form = event.target;
       const formData = new FormData(form);
       const submitButton = document.getElementById("btnsubmit");
 
-      btnsubmit.disabled = true; // Disable button while sending
+      btnsubmit.disabled = true; 
 
       fetch(form.action, {
         method: form.method,
         body: formData,
         headers: {
-            'Accept': 'application/json'
+            'Accept': 'application/json' 
         }
       })
       .then(response => {
         if (response.ok) {
-          // Success! Reset form and show the custom modal
           form.reset(); 
-          modal.style.display = "flex"; // Show the new popup
-
+          // Show the modal using a class
+          modal.classList.add('is-visible');
           btnsubmit.disabled = false; 
 
         } else {
-          // Handle errors with a simple alert
           alert("Oops! There was a problem submitting your form.");
-          submitButton.disabled = false;
+          btnsubmit.disabled = false;
         }
       })
       .catch(error => {
         alert("An error occurred: " + error.message);
-        submitButton.disabled = false;
+        btnsubmit.disabled = false;
       });
     });
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
+    // Function to close the modal
+    function closeModal() {
+        modal.classList.remove('is-visible');
     }
 
-    // When the user clicks anywhere outside of the modal, close it
+    // When the user clicks on <span> (x), close the modal
+    // Note: Use querySelector here as span variable declaration above was incorrect for multiple spans
+    document.querySelector('.close').onclick = closeModal;
+
+
+    // When the user clicks anywhere outside of the modal content, close it
     window.onclick = function(event) {
       if (event.target == modal) {
-        modal.style.display = "none";
+        closeModal();
       }
     }
 </script>
 
 </body>
 </html>
+
 
 
 

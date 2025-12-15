@@ -39,7 +39,7 @@
       nav ul { gap:20px; flex-wrap:wrap; }
     }
 
-        /* Styles for the custom modal popup (Revised for centering) */
+    /* Styles for the custom modal popup */
     .modal {
       display: none; /* Hidden by default */
       position: fixed; /* Stay in place relative to the browser window */
@@ -49,41 +49,38 @@
       width: 100%; /* Full width */
       height: 100%; /* Full height */
       background-color: rgba(0,0,0,0.6); /* Slightly darker background with opacity */
-      /* Use flexbox to center the content perfectly in the middle of the screen */
-      display: flex; 
       justify-content: center;
       align-items: center;
     }
-    /* When modal is shown via JS, we change display from none to flex */
+
+    /* Class used to show the modal via JS */
     .modal.is-visible {
         display: flex;
     }
 
     .modal-content {
       background-color: #fefefe;
-      margin: auto; /* Removed margin auto, flexbox handles centering */
       padding: 40px;
       border-radius: 10px;
       max-width: 400px;
       text-align: center;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      /* Add animation for a professional touch */
       animation: animatetop 0.4s;
+      position: relative; /* Needed for close button positioning */
     }
 
-    /* Add a simple animation */
+    /* Simple animation for modal appearance */
     @keyframes animatetop {
-      from {top: -300px; opacity: 0}
-      to {top: 0; opacity: 1}
+      from { top: -300px; opacity: 0; }
+      to { top: 0; opacity: 1; }
     }
 
     .close {
       color: #aaa;
-      float: right;
       font-size: 28px;
       font-weight: bold;
       cursor: pointer;
-      position: absolute; /* Position close button relative to content */
+      position: absolute;
       top: 10px;
       right: 20px;
     }
@@ -93,7 +90,6 @@
       color: #333;
       text-decoration: none;
     }
-
   </style>
 </head>
 <body>
@@ -108,8 +104,8 @@
 
   <!-- Header / Logo -->
   <header>
-    <!-- Full URL added to Image Source -->
-       <img src="manisha-logo.png" class="logo" alt="Manisha Mhatre Logo">
+    <!-- Placeholder image URL used for logo -->
+    <img src="i.ibb.co" class="logo" alt="Manisha Mhatre Logo">
     <h1>Manisha Mhatre</h1>
     <p>Freelance SQL, .NET & Data Analysis Professional</p>
   </header>
@@ -144,8 +140,8 @@
   <!-- Contact Section -->
   <section id="contact">
     <h2>Contact Me</h2>
-    <!-- Action URL is correct, method="POST" is present -->
-    <form action="https://formsubmit.co/82c26ed9347fd56f7277d6b92512bd09" method="POST">
+    <!-- Added ID to form to target it with JS -->
+    <form action="formsubmit.co" method="POST" id="contactForm">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" required placeholder="Your Name">
 
@@ -155,11 +151,12 @@
       <label for="message">Message:</label>
       <textarea name="message" id="message" rows="5" required placeholder="message"></textarea>      
      
-     
-      
+      <!-- Ensures FormSubmit knows what to return so our JS can catch it -->
       <input type="hidden" name="_captcha" value="false">
+      <!-- Optional: If JS fails, this is the fallback redirect page -->
+      <input type="hidden" name="_next" value="yourwebsite.com"> 
       
-      <button type="submit" button ID="btnsubmit">Send</button>
+      <button type="submit" id="btnsubmit">Send Message</button>
     </form>
   </section>
 
@@ -167,82 +164,75 @@
   <footer>
     &copy; 2025 Manisha Mhatre. All rights reserved.
   </footer>
+  
+  <!-- Success Modal HTML -->
   <div id="successModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <img src="i.ibb.co" alt="Success Checkmark" style="width: 50px; margin-bottom: 15px;">
-    <h3>Message Sent Successfully!</h3>
-    <p>Thank you, your message has been received.</p>
+    <div class="modal-content">
+      <!-- Added onclick handler to the close span and button -->
+      <span class="close" onclick="closeModal()">&times;</span>
+      <!-- Placeholder image URL used for checkmark -->
+      <img src="i.ibb.co" alt="Success Checkmark" style="width: 50px; margin-bottom: 15px;">
+      <h3>Message Sent Successfully!</h3>
+      <p>Thank you, your message has been received.</p>
+      <button onclick="closeModal()" style="margin-top: 20px;">OK</button>
+    </div>
   </div>
-</div>
- <<script>
+
+  <!-- JavaScript Section -->
+  <script>
     // Get the modal element
     var modal = document.getElementById("successModal");
 
-    document.getElementById("contact").addEventListener("submit", function(event) {
-      event.preventDefault(); 
+    // Event listener attached to the form ID
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Stop the default browser form submission
 
       const form = event.target;
       const formData = new FormData(form);
       const submitButton = document.getElementById("btnsubmit");
 
-      btnsubmit.disabled = true; 
+      submitButton.disabled = true; // Disable button to prevent double clicks
+      submitButton.textContent = 'Sending...'; // Optional: Update button text
 
       fetch(form.action, {
         method: form.method,
         body: formData,
         headers: {
+            // This header makes FormSubmit return a JSON response instantly
             'Accept': 'application/json' 
         }
       })
       .then(response => {
         if (response.ok) {
-          form.reset(); 
-          // Show the modal using a class
-          modal.classList.add('is-visible');
-          btnsubmit.disabled = false; 
+          form.reset(); // Reset form fields
+          modal.classList.add('is-visible'); // Show the modal by adding the 'is-visible' class
+          submitButton.disabled = false; // Re-enable button
+          submitButton.textContent = 'Send Message'; // Reset button text
 
         } else {
           alert("Oops! There was a problem submitting your form.");
-          btnsubmit.disabled = false;
+          submitButton.disabled = false;
+          submitButton.textContent = 'Send Message';
         }
       })
       .catch(error => {
         alert("An error occurred: " + error.message);
-        btnsubmit.disabled = false;
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Message';
       });
     });
 
-    // Function to close the modal
+    // Function to close the modal, called by the X and OK button
     function closeModal() {
         modal.classList.remove('is-visible');
     }
 
-    // When the user clicks on <span> (x), close the modal
-    // Note: Use querySelector here as span variable declaration above was incorrect for multiple spans
-    document.querySelector('.close').onclick = closeModal;
-
-
-    // When the user clicks anywhere outside of the modal content, close it
+    // Optional: Close the modal if the user clicks anywhere outside of the modal content
     window.onclick = function(event) {
       if (event.target == modal) {
         closeModal();
       }
     }
-</script>
-
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

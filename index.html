@@ -4,92 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manisha Mhatre | Freelance Professional</title>
-  <!-- Full URL added to Google Fonts link -->
   <link href="fonts.googleapis.com" rel="stylesheet">
-  <!-- Full URL added to Font Awesome link -->
   <link rel="stylesheet" href="cdnjs.cloudflare.com">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Roboto', sans-serif; line-height:1.6; color:#333; background:#f5f5f5; scroll-behavior:smooth; }
-    nav { position:fixed; top:0; width:100%; background:#fff; padding:10px 0; box-shadow:0 2px 10px rgba(0,0,0,0.1); z-index:1000; }
-    nav ul { list-style:none; display:flex; justify-content:center; gap:40px; margin:0; padding:0; }
-    nav ul li a { text-decoration:none; color:#6a0dad; font-weight:700; transition:0.3s; }
-    nav ul li a:hover { color:#4b0082; }
-    header { background:#6a0dad; color:#fff; padding:100px 20px 60px; text-align:center; }
-    header img { width:120px; margin-bottom:20px; }
-    header h1 { font-size:2.8rem; margin-bottom:10px; }
-    header p { font-size:1.2rem; }
-    section { padding:80px 20px; max-width:1100px; margin:0 auto; }
-    h2 { text-align:center; margin-bottom:50px; color:#6a0dad; font-size:2rem; }
-    .services { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:30px; }
-    .service-card { background:#fff; padding:30px; border-radius:12px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.1); transition:transform 0.3s, box-shadow 0.3s; }
-    .service-card:hover { transform:translateY(-8px); box-shadow:0 8px 25px rgba(0,0,0,0.15); }
-    .service-card i { font-size:2.5rem; color:#6a0dad; margin-bottom:15px; }
-    .service-card h3 { margin-bottom:15px; color:#6a0dad; }
-    .service-card p { font-size:0.95rem; }
+    /* ... (Your other CSS styles remain the same) ... */
     form { background:#fff; padding:40px; border-radius:12px; max-width:600px; margin:0 auto; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
     form label { display:block; margin-bottom:8px; font-weight:700; }
     form input, form textarea { width:100%; padding:12px; margin-bottom:20px; border:1px solid #ccc; border-radius:8px; }
     form button { background:#6a0dad; color:#fff; padding:15px 25px; border:none; border-radius:8px; cursor:pointer; font-size:1rem; transition:0.3s; }
     form button:hover { background:#4b0082; }
-    footer { background:#333; color:#fff; text-align:center; padding:25px 20px; margin-top:50px; }
-    @media(max-width:600px){
-      header h1 { font-size:2rem; }
-      header p { font-size:1rem; }
-      nav ul { gap:20px; flex-wrap:wrap; }
-    }
-
-    /* Styles for the custom modal popup */
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place relative to the browser window */
-      z-index: 1001; /* Sit on top of everything else */
-      left: 0;
-      top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      background-color: rgba(0,0,0,0.6); /* Slightly darker background with opacity */
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Class used to show the modal via JS */
-    .modal.is-visible {
-        display: flex;
-    }
-
-    .modal-content {
-      background-color: #fefefe;
-      padding: 40px;
-      border-radius: 10px;
-      max-width: 400px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      animation: animatetop 0.4s;
-      position: relative; /* Needed for close button positioning */
-    }
-
-    /* Simple animation for modal appearance */
-    @keyframes animatetop {
-      from { top: -300px; opacity: 0; }
-      to { top: 0; opacity: 1; }
-    }
-
-    .close {
-      color: #aaa;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-      position: absolute;
-      top: 10px;
-      right: 20px;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: #333;
-      text-decoration: none;
-    }
+    /* ... (Your other CSS styles remain the same) ... */
   </style>
 </head>
 <body>
@@ -104,8 +30,7 @@
 
   <!-- Header / Logo -->
   <header>
-    <!-- Placeholder image URL used for logo -->
-    <img src="i.ibb.co" class="logo" alt="Manisha Mhatre Logo">
+    <img src="i.ibb.co" alt="Manisha Mhatre Logo">
     <h1>Manisha Mhatre</h1>
     <p>Freelance SQL, .NET & Data Analysis Professional</p>
   </header>
@@ -114,34 +39,19 @@
   <section id="services">
     <h2>My Professional Services</h2>
     <div class="services">
-      <div class="service-card">
-        <i class="fas fa-code"></i>
-        <h3>Web & Database Development</h3>
-        <p>.NET MVC web apps, SQL Server development, database design, and optimization.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-chart-line"></i>
-        <h3>Data Analysis & Reporting</h3>
-        <p>Power BI dashboards, advanced Excel solutions, SAS analytics, and professional reporting.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-tools"></i>
-        <h3>Freelance Support & Consulting</h3>
-        <p>Database troubleshooting, automation, MIS reporting, and data migration services.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-user-graduate"></i>
-        <h3>Custom Solutions & Training</h3>
-        <p>Project consultation, tailored solutions, and team training for SQL, .NET, Excel, and Power BI.</p>
-      </div>
+      <!-- ... (Your service cards remain the same) ... -->
+      <div class="service-card"><i class="fas fa-code"></i><h3>Web & Database Development</h3><p>.NET MVC web apps, SQL Server development, database design, and optimization.</p></div>
+      <div class="service-card"><i class="fas fa-chart-line"></i><h3>Data Analysis & Reporting</h3><p>Power BI dashboards, advanced Excel solutions, SAS analytics, and professional reporting.</p></div>
+      <div class="service-card"><i class="fas fa-tools"></i><h3>Freelance Support & Consulting</h3><p>Database troubleshooting, automation, MIS reporting, and data migration services.</p></div>
+      <div class="service-card"><i class="fas fa-user-graduate"></i><h3>Custom Solutions & Training</h3><p>Project consultation, tailored solutions, and team training for SQL, .NET, Excel, and Power BI.</p></div>
     </div>
   </section>
 
   <!-- Contact Section -->
   <section id="contact">
     <h2>Contact Me</h2>
-    <!-- Added ID to form to target it with JS -->
-    <form action="https://formsubmit.co/82c26ed9347fd56f7277d6b92512bd09" method="POST">
+    <!-- Use the action URL you provided -->
+    <form action="formsubmit.co" method="POST">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" required placeholder="Your Name">
 
@@ -149,14 +59,12 @@
       <input type="email" name="email" id="email" required placeholder="Your Email">
 
       <label for="message">Message:</label>
-      <textarea name="message" id="message" rows="5" required placeholder="message"></textarea>      
-     
-      <!-- Ensures FormSubmit knows what to return so our JS can catch it -->
-      <input type="hidden" name="_captcha" value="false">
-      <!-- Optional: If JS fails, this is the fallback redirect page -->
-      <input type="hidden" name="_next" value="yourwebsite.com"> 
-      
-      <button type="submit" id="btnsubmit">Send Message</button>
+      <textarea name="message" id="message" rows="5" required placeholder="message"></textarea>
+            
+      <!-- Redirects to the custom success page after successful submission -->
+      <input type="hidden" name="_next" value="manishamhatre.github.io">
+            
+      <button type="submit">Send</button>
     </form>
   </section>
 
@@ -164,77 +72,7 @@
   <footer>
     &copy; 2025 Manisha Mhatre. All rights reserved.
   </footer>
-  
-  <!-- Success Modal HTML -->
-  <div id="successModal" class="modal">
-    <div class="modal-content">
-      <!-- Added onclick handler to the close span and button -->
-      <span class="close" onclick="closeModal()">&times;</span>
-      <!-- Placeholder image URL used for checkmark -->
-      <img src="i.ibb.co" alt="Success Checkmark" style="width: 50px; margin-bottom: 15px;">
-      <h3>Message Sent Successfully!</h3>
-      <p>Thank you, your message has been received.</p>
-      <button onclick="closeModal()" style="margin-top: 20px;">OK</button>
-    </div>
-  </div>
 
-  <!-- JavaScript Section -->
-  <script>
-    // Get the modal element
-    var modal = document.getElementById("successModal");
-
-    // Event listener attached to the form ID
-    document.getElementById("contactForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Stop the default browser form submission
-
-      const form = event.target;
-      const formData = new FormData(form);
-      const submitButton = document.getElementById("btnsubmit");
-
-      submitButton.disabled = true; // Disable button to prevent double clicks
-      submitButton.textContent = 'Sending...'; // Optional: Update button text
-
-      fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: {
-            // This header makes FormSubmit return a JSON response instantly
-            'Accept': 'application/json' 
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          form.reset(); // Reset form fields
-          modal.classList.add('is-visible'); // Show the modal by adding the 'is-visible' class
-          submitButton.disabled = false; // Re-enable button
-          submitButton.textContent = 'Send Message'; // Reset button text
-
-        } else {
-          alert("Oops! There was a problem submitting your form.");
-          submitButton.disabled = false;
-          submitButton.textContent = 'Send Message';
-        }
-      })
-      .catch(error => {
-        alert("An error occurred: " + error.message);
-        submitButton.disabled = false;
-        submitButton.textContent = 'Send Message';
-      });
-    });
-
-    // Function to close the modal, called by the X and OK button
-    function closeModal() {
-        modal.classList.remove('is-visible');
-    }
-
-    // Optional: Close the modal if the user clicks anywhere outside of the modal content
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        closeModal();
-      }
-    }
-  </script>
+<!-- !!! REMOVED JAVASCRIPT CODE HERE !!! -->
 </body>
 </html>
-
-
